@@ -164,6 +164,49 @@ Unfortunately, there is no "make everything ok" button in DeepFaceLab. You shoul
 
 <tr><td colspan=2 align="center">
 
+### GPU memory usage
+
+</td></tr>
+
+<tr><td colspan=2 align="center">
+
+Set environment variable `NN_GPU_MEM_FRACTION` (0-1) to limit TensorFlow GPU memory usage.
+Example:
+
+```bash
+NN_GPU_MEM_FRACTION=0.5 python main.py
+```
+
+</td></tr>
+
+</table>
+
+<table align="center" border="0">
+
+<tr><td colspan=2 align="center">
+
+### Face restoration
+
+</td></tr>
+
+<tr><td colspan=2 align="center">
+
+Use `FaceRestorer` to clean up artifacts with a pre-trained GFPGAN model. Run:
+
+```bash
+python mainscripts/FaceRestorer.py /path/to/frames
+```
+
+This step can refine merged results.
+
+</td></tr>
+
+</table>
+
+<table align="center" border="0">
+
+<tr><td colspan=2 align="center">
+
 ### Communication groups
 
 </td></tr>
