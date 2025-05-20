@@ -185,6 +185,7 @@ NN_GPU_MEM_FRACTION=0.5 python main.py
 
 <tr><td colspan=2 align="center">
 
+
 ### Face restoration
 
 </td></tr>
@@ -206,6 +207,8 @@ This step can refine merged results.
 <table align="center" border="0">
 
 <tr><td colspan=2 align="center">
+
+=======
 
 ### Communication groups
 
