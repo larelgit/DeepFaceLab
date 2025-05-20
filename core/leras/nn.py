@@ -106,12 +106,23 @@ class nn():
                 nn.tf_default_device_name = '/CPU:0'
             else:
                 nn.tf_default_device_name = f'/{device_config.devices[0].tf_dev_type}:0'
-                
+
                 config = tf.ConfigProto()
                 config.gpu_options.visible_device_list = ','.join([str(device.index) for device in device_config.devices])
-                
+
             config.gpu_options.force_gpu_compatible = True
             config.gpu_options.allow_growth = True
+            mem_frac = os.environ.get('NN_GPU_MEM_FRACTION', None)
+            if mem_frac is not None:
+                try:
+                    mem_frac = float(mem_frac)
+                    if 0.0 < mem_frac <= 1.0:
+                        config.gpu_options.per_process_gpu_memory_fraction = mem_frac
+                        io.log_info(f'Limiting GPU memory usage to {mem_frac*100:.0f}%')
+                    else:
+                        io.log_err('NN_GPU_MEM_FRACTION must be between 0 and 1')
+                except Exception as e:
+                    io.log_err(f'Invalid NN_GPU_MEM_FRACTION value: {e}')
             nn.tf_sess_config = config
             
         if nn.tf_sess is None:
